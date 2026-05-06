@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kylibapp
+  namespace: kylibapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kylibapp
+  template:
+    metadata:
+      labels:
+        app: kylibapp
+    spec:
+      containers:
+        - name: kylibapp
+          image: kylib/app:v1.0.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080

@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/TWOJ_LOGIN/AsciiArtify.git
+    repoURL: https://github.com/kylib4444/AsciiArtify.git
     targetRevision: main
     path: apps/kylibapp
   destination:

@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: logstash-config
+  namespace: logging
+data:
+  logstash.conf: |
+    input {
+      tcp {
+        port => 5000
+        codec => json_lines
+      }
+      http {
+        port => 8080
+        codec => json
+      }
+    }
+
+    filter {
+      mutate {
+        add_field => {
+          "aslog.source" => "kubernetes-poc"
+          "aslog.retention" => "demo-7d"
+        }
+      }
+    }
+
+    output {
+      stdout { codec => rubydebug }
+
+      file {
+        path => "/usr/share/logstash/logs/k8s-poc.log"
+        codec => json_lines
+      }
+    }
